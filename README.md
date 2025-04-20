@@ -11,7 +11,7 @@ docker exec -it binomial-distribution-r-env-1 bash
 - enjoy the Rplots.pdf :)
 ## Second, faster way to execute the main.R to get the pdf
 ```bash
-./run
+./run main.R
 ```
 (this will start the container, connect to it, install the packages.txt, execute the main.R & kill the container)
 
