@@ -6,7 +6,10 @@ k0 <- 1    # minimum wins
 # analytical probability of ≥ k0 wins
 # -------------------------------------------
 prob_at_least_k0 <- 1 - pbinom(k0 - 1, size = n, prob = p)
-cat(sprintf("P(win ≥ %d of %d) = %.4f\n", k0, n, prob_at_least_k0))
+prob_exactly_k0 <- dbinom(k0, size = n, prob = p)
+
+cat(sprintf("P(win ≥ %d of %d) = %.6f\n", k0, n, prob_at_least_k0))
+cat(sprintf("P(win = %d of %d) = %.6f\n", k0, n, prob_exactly_k0))
 
 # -------------------------------------------
 # full distribution
@@ -23,6 +26,16 @@ probs <- dbinom(wins, size = n, prob = p)
 # }
 
 df <- data.frame(wins, probs)
+
+# -------------------------------------------
+# Find most probable number of wins (mode)
+# -------------------------------------------
+max_prob <- max(df$probs)
+most_likely_k <- df$wins[which.max(df$probs)]
+
+cat(sprintf("Most likely number of wins (mode): %d with probability = %.6f\n",
+            most_likely_k, max_prob))
+
 
 # -------------------------------------------
 # visualizing
